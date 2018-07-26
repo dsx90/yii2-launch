@@ -1,0 +1,42 @@
+/******************CODE******************/
+.hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+    background: #474949;
+    color: #d1d9e1;
+    -webkit-text-size-adjust: none;
+}
+.hljs-body,
+.hljs-collection {
+    color: #d1d9e1;
+}
+.hljs-comment,
+.diff .hljs-header,
+.hljs-doctype,
+.lisp .hljs-string {
+    color: #969896;
+    font-style: italic;
+}
+/******************END******************/
+
+.nav-tabs-custom {
+    margin-bottom: 0px;
+    background: #2f3c42;
+    box-shadow: 0;
+    border-radius: 3px;
+    padding-top: 2px;
+}
+.nav-tabs-custom>.nav-tabs>li {
+    margin: 0;
+    width: 76.5px;
+}
+.nav-tabs-custom>.nav-tabs>li>a {
+    color: #999;
+}
+.nav-tabs-custom>.nav-tabs>li>a:hover {
+    color: #bbb;
+}
+.nav-tabs-custom>.nav-tabs>li>a, .nav-tabs-custom>.nav-tabs>li>a:hover {
+    padding: 2px 6px 1px 6px;
+}

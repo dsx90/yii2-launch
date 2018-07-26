@@ -1,0 +1,33 @@
+{
+    "name": "dsx90/yii2-launch",
+    "description": "launch resurces",
+    "type": "yii2-extension",
+    "keywords": [
+        "yii2",
+        "extension",
+        "launch",
+        "resurces"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "dsx90",
+            "email": "dsx90@yandex.ru",
+            "homepage": "https://github.com/dsx90/yii2-launch",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": "~2.0.0"
+    },
+    "extra": {
+        "bootstrap": "dsx90\\launcher\\Bootstrap"
+    },
+    "autoload": {
+        "psr-4": {
+            "dsx90\\launcher\\": "src"
+        }
+    }
+}
