@@ -1,6 +1,6 @@
-Yandex Metrika Widget
+Yii2 Launch
 =====================
-Yandex Metrika Widget
+Yii2 Launch
 
 Installation
 ------------
@@ -10,22 +10,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist yii2-dsx90/yii2-metrika "*"
+php composer.phar require --prefer-dist dsx90/yii2-launch "*"
 ```
 
 or add
 
 ```
-"yii2-dsx90/yii2-metrika: "*"
+"dsx90/yii2-launch: "*"
 ```
 
 to the require section of your `composer.json` file.
-
-
-Usage
------
-
-Once the extension is installed, simply use it in your code by  :
-
-```php
-<?= \dsx90\metrika\AutoloadExample::widget(); ?>```
