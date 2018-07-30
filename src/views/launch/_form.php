@@ -126,9 +126,9 @@ use dsx90\launcher\models\Module;
     </div>
 
     <?php Pjax::begin([
-            'linkSelector' => false,
-            'formSelector' => false,
-            'id' => 'module'
+        'linkSelector' => false,
+        'formSelector' => false,
+        'id' => 'module'
     ]) ?>
 
     <div id="fields" class="forms">
@@ -150,48 +150,26 @@ use dsx90\launcher\models\Module;
 $id = $model->id;
 $launch_id = ($model->isNewRecord) ? 0 : $model->id;
 $this->registerJs(<<<JS
-$('.repeat-name').click(function(){
-    var text = $('#launch-title').val();
-    $('#launch-menutitle').val(text);
-});
-$('.translate-name').click(function(){
-    var text = $('#launch-title').val().toLowerCase();
-    result = translit(text);
-$('#launch-slug').val(result);
-});
-$('.translate-title').click(function(){
-    var text = $('#launch-menutitle').val().toLowerCase();
-    result = translit(text);
-$('#launch-slug').val(result);
-});
-$('#launch-module_id').on('change', function(){
-$.pjax.reload('#module', {
-    'url': window.location + '&module=' + $(this).val(),
-    'replace': false
-})
-//    $.ajax({
-//        url: 'ajax?id={$id}',
-//        type: 'POST',
-//        data : {module_id : $(this).val()},
-//        success: function(data){
-//        $('#fields').html(data);
-//    }
-//    });
-});
-/*$('#launch-template_id').change(function(){
-    var template_id = $(this).val();
-    $.ajax({
-        url: '" . Url::to(['change']) . "',
-        type: 'POST',
-        data: {
-        'id' : " . $launch_id . ",
-            'template_id' : template_id
-        },
-        success: function(data){
-        $('#lb-document-module-fields').html(data);
-    }
+    $('.repeat-name').click(function(){
+        var text = $('#launch-title').val();
+        $('#launch-menutitle').val(text);
     });
-});*/
+    $('.translate-name').click(function(){
+        var text = $('#launch-title').val().toLowerCase();
+        result = translit(text);
+    $('#launch-slug').val(result);
+    });
+    $('.translate-title').click(function(){
+        var text = $('#launch-menutitle').val().toLowerCase();
+        result = translit(text);
+    $('#launch-slug').val(result);
+    });
+    $('#launch-module_id').on('change', function(){
+    $.pjax.reload('#module', {
+        'url': window.location.href.replace(/&module=[0-9]+/g, '') + '&module=' + $(this).val(),
+        'replace': false
+    })
+    });
 JS
 );
 ?>

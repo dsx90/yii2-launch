@@ -21,8 +21,8 @@ class m170924_200016_launch extends Migration
             'slug'          => $this->string(80)->unique(),
             'status'        => $this->smallInteger()->notNull(),
             'is_folder'     => $this->smallInteger(),
-            'type'          => $this->integer(11),
             'position'      => $this->integer(11),
+            'module_id'      => $this->integer(11),
             'parent_id'     => $this->integer(11),
             'template_id'   => $this->integer(11),
             'author_id'     => $this->integer(11),
@@ -32,16 +32,28 @@ class m170924_200016_launch extends Migration
             'updated_at'    => $this->integer(),
         ], $tableOptions);
 
+        //Таблица связывающих
+        $this->createTable('{{%module}}', [
+            'id' => $this->primaryKey(),
+            'title' => $this->string(),
+            'name' => $this->string(),
+            'icon' => $this->string(20),
+            'status' => $this->boolean(),
+            'model' => $this->string(),
+            'controller' => $this->string(),
+            'form' => $this->string(),
+        ], $tableOptions);
+
         //Таблица шаблонов template
         $this->createTable('{{%template}}', [
             'id'            => $this->primaryKey(),
-            'name'          => $this->string()->notNull(),
+            'title'         => $this->string()->notNull(),
             'description'   => $this->text(),
             'path'          => $this->string(),
         ] , $tableOptions);
 
         //Таблица просмотров документов visit
-        $this->createTable('{{%lb_visit}}', [
+        $this->createTable('{{%visit}}', [
             'id'            => $this->primaryKey(),
             'created_at'    => $this->integer()->notNull(),
             'launch_id'     => $this->integer()->notNull(),
@@ -51,7 +63,7 @@ class m170924_200016_launch extends Migration
         ], $tableOptions);
 
         //Таблица просмотров документов visit
-        $this->createTable('{{%lb_like}}', [
+        $this->createTable('{{%like}}', [
             'id'            => $this->primaryKey(),
             'created_at'    => $this->integer()->notNull(),
             'launch_id'     => $this->integer()->notNull(),
@@ -62,7 +74,7 @@ class m170924_200016_launch extends Migration
 
         //Индексы и ключи таблицы шаблонов template
         $this->createIndex(
-            'template_title_index',
+            'idx-template-title',
             '{{%template}}',
             'title'
         );
@@ -135,10 +147,10 @@ class m170924_200016_launch extends Migration
             'CASCADE'
         );
         $this->addForeignKey(
-            'fk_tietype_launch',
+            'fk_module_launch',
             '{{%launch}}',
-            'type',
-            '{{%tie_type}}',
+            'module_id',
+            '{{%module}}',
             'id',
             'RESTRICT',
             'RESTRICT'
@@ -152,9 +164,6 @@ class m170924_200016_launch extends Migration
             'SET NULL',
             'CASCADE'
         );
-
-
-
     }
 
     public function safeDown()
@@ -163,7 +172,7 @@ class m170924_200016_launch extends Migration
         $this->dropForeignKey('fk_launch_updater', '{{%launch}}');
         $this->dropForeignKey('fk_launch_category', '{{%launch}}');
         $this->dropForeignKey('fk_template_launch', '{{%launch}}');
-        $this->dropForeignKey('fk_tietype_launch', '{{%launch}}');
+        $this->dropForeignKey('fk_module_launch', '{{%launch}}');
         $this->dropForeignKey('fk_launch_parent', '{{%launch}}');
         $this->dropForeignKey('fk_launch_like', '{{%launch}}');
         $this->dropForeignKey('fk_launch_visit', '{{%launch}}');
@@ -172,6 +181,7 @@ class m170924_200016_launch extends Migration
         $this->dropTable('{{%like}}');
         $this->dropTable('{{%visit}}');
         $this->dropTable('{{%template}}');
+        $this->dropTable('{{%module}}');
     }
 
 }

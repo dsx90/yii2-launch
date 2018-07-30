@@ -123,8 +123,8 @@ class LaunchController extends Controller
 
         // Устанавливаем родительский документ если пришло значение из $_GET
         $model->parent_id = Yii::$app->request->get('parent_id');
-        // Заполняем необходимые для заполнения поля
 
+        // Заполняем необходимые для заполнения поля
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->getSession()->setFlash('success', Yii::t('bakend', 'A new document is created.'));
             return $this->redirect(['update', 'id' => $model->id]);
