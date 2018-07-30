@@ -22,7 +22,7 @@ class m170924_200016_launch extends Migration
             'status'        => $this->smallInteger()->notNull(),
             'is_folder'     => $this->smallInteger(),
             'position'      => $this->integer(11),
-            'module_id'      => $this->integer(11),
+            'module_id'     => $this->integer(11),
             'parent_id'     => $this->integer(11),
             'template_id'   => $this->integer(11),
             'author_id'     => $this->integer(11),
@@ -34,14 +34,14 @@ class m170924_200016_launch extends Migration
 
         //Таблица связывающих
         $this->createTable('{{%module}}', [
-            'id' => $this->primaryKey(),
-            'title' => $this->string(),
-            'name' => $this->string(),
-            'icon' => $this->string(20),
-            'status' => $this->boolean(),
-            'model' => $this->string(),
-            'controller' => $this->string(),
-            'form' => $this->string(),
+            'id'            => $this->primaryKey(),
+            'title'         => $this->string(),
+            'name'          => $this->string(),
+            'icon'          => $this->string(20),
+            'status'        => $this->boolean(),
+            'model'         => $this->string(),
+            'controller'    => $this->string(),
+            'form'          => $this->string(),
         ], $tableOptions);
 
         //Таблица шаблонов template
