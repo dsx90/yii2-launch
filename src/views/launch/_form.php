@@ -9,9 +9,8 @@ use trntv\yii\datetime\DateTimeWidget;
 use dsx90\launcher\models\Template;
 use dsx90\launcher\models\Module;
 
-/* @var $this yii\web\View */
-/* @var $model common\models\Launch */
-/* @var $composit \backend\controllers\LaunchController : update  */
+/* @var $model dsx90\launcher\models\Launch */
+/* @var $composit dsx90\launcher\backend\controllers\LaunchController : update  */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -69,9 +68,9 @@ use dsx90\launcher\models\Module;
                 </div>
                 <div class="adver-view">
                     <i>Видимость в поисковиках</i>
-                    <h2><span id="title"><?= $model->title ? $model->title : 'Титул' ?></span>: <span id="longtitle"><?= $model->longtitle ?: 'Краткое описание' ?></span></h2>
+                    <h2><span id="adver-title"><?= $model->title ? $model->title : 'Титул' ?></span>: <span id="adver-longtitle"><?= $model->longtitle ?: 'Краткое описание' ?></span></h2>
                     <h4><?= env('FRONTEND_URL')?>›<span id="url"><?= $model->slug ?: 'url ссылка' ?></span></h4>
-                    <h5><span id="description"><?= $model->description ?: 'Обьявление' ?></span></h5>
+                    <h5><span id="adver-description"><?= $model->description ?: 'Обьявление' ?></span></h5>
                 </div>
             </div>
             <div id="launch-right" class="col-md-3">
@@ -112,7 +111,7 @@ use dsx90\launcher\models\Module;
                     ]
                 ]); ?>
 
-                <?= $form->field($model, 'author_id')->textInput() ?>
+                <?//= $form->field($model, 'author_id')->dropDownList($model->getAuthor()->id)?> <!--TODO: Вывести Автора-->
 
                 <?//= $form->field($model, 'published_at')->widget(DateTimeWidget::className(), ['phpDatetimeFormat' => 'dd.MM.yyyy, HH:mm:ss']) ?>
 
@@ -170,6 +169,15 @@ $this->registerJs(<<<JS
         'replace': false
     })
     });
+    $('#launch-title').keyup(function() {
+      $('#adver-title')[0].innerHTML = $(this)[0].value
+    })
+    $('#launch-longtitle').keyup(function() {
+      $('#adver-longtitle')[0].innerHTML = $(this)[0].value
+    })
+    $('#launch-description').keyup(function() {
+      $('#adver-description')[0].innerHTML = $(this)[0].value
+    })
 JS
 );
 ?>
